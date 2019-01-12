@@ -1,8 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import style from './ui.css';
 import logo from '../../assets/img/msk.png';
-
+/* eslint react/prop-types: 0 */
 const Interface = ({ title }) => (
   <div className={style.headerUI}>
     <div className={style.info}>{title}</div>
@@ -13,9 +12,5 @@ const Interface = ({ title }) => (
     </h1>
   </div>
 );
-
-Interface.propTypes = {
-  title: PropTypes.instanceOf(Element)
-};
 
 export default Interface;

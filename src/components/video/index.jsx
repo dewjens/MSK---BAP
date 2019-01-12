@@ -12,9 +12,20 @@ class Video extends Component {
 
   render() {
     return (
-      <video className={style.videoCanvas}  loop autoPlay>
-        <source src={this.state.videoURL} type="video/mp4" />
-       Your browser does not support the video tag.
+      <video
+        className={style.videoCanvas}
+        autoPlay
+        loop
+        controls={['PlayPause', 'Seek', 'Time', 'Volume', 'Fullscreen']}
+        poster="http://sourceposter.jpg">
+        <source src={this.state.videoURL} type='video/mp4' />
+        <track
+          label="English"
+          kind="subtitles"
+          srcLang="en"
+          src="http://source.vtt"
+          default
+        />
       </video>
     );
   }

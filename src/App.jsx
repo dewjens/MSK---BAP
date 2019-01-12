@@ -7,19 +7,30 @@ import style from './assets/css/style.css';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      showComponent: false,
+    };
+    this.onButtonClick = this.onButtonClick.bind(this);
+  }
+
+  onButtonClick() {
+    this.setState({
+      showComponent: true,
+    });
   }
 
   render() {
     return (
       <main className={style.main}>
+        <button className={style.enterBtn} onClick={this.onButtonClick}>Ontdek de verhalen</button>
+        {this.state.showComponent ? <Video/> : null}
         <Interface
           title=<span className={style.expoInfo}>
-          Van Eyck,
+            Van Eyck,
             <br /> <span className={style.light}>Een optische revolutie</span>
             <br /> <span className={style.red}>01.02.20 - 30.04.20</span>
-          </span>/>
-          <Video/>
+          </span>
+        />
       </main>
     );
   }
