@@ -22,7 +22,15 @@ class App extends Component {
   render() {
     return (
       <main className={style.main}>
-        <button className={style.enterBtn} onClick={this.onButtonClick}>Ontdek de verhalen</button>
+        {!this.state.showComponent ? (
+          <button
+            className={style.enterBtn}
+            onClick={this.onButtonClick}
+            type="button"
+          >
+            Ontdek de verhalen
+          </button>
+        ) : null}
         {this.state.showComponent ? <Video/> : null}
         <Interface
           title=<span className={style.expoInfo}>

@@ -10,6 +10,7 @@ const Interface = ({ title }) => (
         <img src={logo} width="80" height="70" alt="MSK" />
       </a>
     </h1>
+    <div className={style.shadow}/>
   </div>
 );
 

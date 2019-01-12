@@ -22,5 +22,60 @@
 .videoCanvas {
   width: 100vw;
   height: 100vh;
-  z-index: 0;
+  z-index: 11;
+}
+
+.player__controls {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  z-index: 100;
+  pointer-events: none;
+}
+
+
+.progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  margin-bottom: 8rem;
+  width: 100vw;
+  background: rgba(0,0,0,0.5);
+  transition:height 0.3s;
+  cursor: pointer;
+  flex-basis: 100%;
+  pointer-events:all;
+}
+
+.progress__filled {
+  width: 50%;
+  background-color: red;
+  height: .6rem;
+  flex: 0;
+  flex-basis: 0%;
+}
+
+.player__button {
+  position: absolute;
+  pointer-events:all;
+  background-color: rgba(0,0,0,0.5);
+  border-radius: 20rem;
+  font-size: 1rem;
+  padding: 2rem;
+    outline: none;
+  color: red;
+  border:none;
+  transition: opacity .3s ease-in-out;
+}
+
+.player__slider {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  pointer-events:all;
+  transition: opacity .3s ease-in-out;
 }
