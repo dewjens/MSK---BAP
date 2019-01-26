@@ -1,15 +1,3 @@
-.info{
-  position: absolute;
-  right: 0;
-  margin-right: 1rem;
-  margin-top: 1rem;
-  top: 0;
-  font-size: 1.2rem;
-  color: white;
-  text-align: right;
-  z-index: 99;
-}
-
 .logo {
   position: absolute;
   left: 0;
@@ -19,10 +7,29 @@
   z-index: 99;
 }
 
+.info {
+  position: absolute;
+  right: 0;
+  margin-right: 1rem;
+  margin-top: 1rem;
+  top: 0;
+  font-size: 1.2rem;
+  color: white;
+  text-align: right;
+  z-index: -2;
+}
+
 .videoCanvas {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   z-index: 11;
+  margin-top: 4rem;
+}
+
+.player {
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .player__controls {
@@ -30,52 +37,184 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   z-index: 100;
   pointer-events: none;
 }
-
 
 .progress {
   position: absolute;
   bottom: 0;
   left: 0;
   display: flex;
-  margin-bottom: 8rem;
-  width: 100vw;
-  background: rgba(0,0,0,0.5);
-  transition:height 0.3s;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  transition: height 0.3s;
   cursor: pointer;
   flex-basis: 100%;
-  pointer-events:all;
+  pointer-events: all;
 }
 
 .progress__filled {
   width: 50%;
   background-color: red;
-  height: .6rem;
+  height: 0.6rem;
   flex: 0;
   flex-basis: 0%;
 }
 
 .player__button {
   position: absolute;
-  pointer-events:all;
-  background-color: rgba(0,0,0,0.5);
+  pointer-events: all;
+  background-color: rgba(0, 0, 0, 0.5);
   border-radius: 20rem;
   font-size: 1rem;
   padding: 2rem;
-    outline: none;
+  outline: none;
   color: red;
-  border:none;
-  transition: opacity .3s ease-in-out;
+  border: none;
+  transition: opacity 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.ontdek {
+  position: absolute;
+  color: white;
+  font-size: 1.2rem;
+  bottom: 0;
+  text-align: center;
+  width: 100vw;
+  padding-bottom: 2rem;
+  z-index: 101;
+  cursor: pointer;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.shadow {
+  background: url(../../assets/img/shadow.png) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  z-index: 12;
+  position: absolute;
+  transition: opacity 0.3s ease-in-out;
 }
 
 .player__slider {
   position: absolute;
   bottom: 0;
   left: 0;
-  pointer-events:all;
-  transition: opacity .3s ease-in-out;
+  margin-left: 1rem;
+  margin-bottom: 3rem;
+  pointer-events: all;
+  transition: opacity 0.3s ease-in-out;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+input[type='range'] {
+  display: block;
+  -webkit-appearance: none;
+  background-color: rgba(255, 255, 255, 0.5);
+  width: 10rem;
+  height: 0.2rem;
+  border-radius: 5px;
+  outline: 0;
+}
+
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  background-color: red;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+
+​ input[type='range']::-webkit-slider-thumb:hover {
+  background-color: white;
+  border: 2px solid #e74c3c;
+}
+
+input[type='range']::-webkit-slider-thumb:active {
+  transform: scale(1.4);
+}
+
+.closeSelector {
+  color: white;
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 2rem;
+  padding: 2rem;
+}
+
+.artWrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.artPiece {
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.5);
+  margin: 1rem;
+  height: 50%;
+  color: white;
+  text-align: left;
+}
+
+.audio {
+  background-image: url(../../assets/img/audio.png);
+  background-size: cover;
+  width: 2rem;
+  height: 2rem;
+  z-index: 300;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin-bottom: 2rem;
+  margin-left: 2rem;
+  cursor: pointer;
+}
+.languages {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+.translationList {
+  color: white;
+  display: flex;
+  width: 10vw;
+  justify-content: space-around;
+  margin-bottom: 2rem;
+  margin-right: 1rem;
+  font-size: 1.2rem;
+}
+.translationItem:hover {
+  color: red;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 650px) {
+  .info {
+    font-size: 0.9rem;
+  }
+  .audio {
+    display: none;
+  }
+  .msk {
+    width: 2.8rem;
+    height: 2.5rem;
+  }
 }

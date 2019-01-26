@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { hot } from 'react-hot-loader';
 import IdleTimer from 'react-idle-timer';
 import style from '../ui/ui.css';
-
-
+/* eslint-disable */
 class Video extends Component {
   constructor(props) {
     super(props);
@@ -20,54 +19,60 @@ class Video extends Component {
       playbackRate: 1,
       volume: 1,
       isMouseDown: false,
-      opacity: 1
+      opacity: 1,
+      height: '0rem',
     };
-    this.idleTimer = null
-    this.onAction = this._onAction.bind(this)
-    this.onActive = this._onActive.bind(this)
-    this.onIdle = this._onIdle.bind(this)
+    this.idleTimer = null;
+    this.onAction = this._onAction.bind(this);
+    this.onActive = this._onActive.bind(this);
+    this.onIdle = this._onIdle.bind(this);
+    this.handleOnHover = this.handleOnHover.bind(this);
+    this.handleClose = this.handleClose.bind(this);
   }
   _onAction(e) {
     console.log('user did something', e);
-    this.state.opacity = 1;
   }
 
   _onActive(e) {
-    console.log('user is active', e)
-    console.log('time remaining', this.idleTimer.getRemainingTime())
+    console.log('user is active', e);
+    console.log('time remaining', this.idleTimer.getRemainingTime());
     this.state.opacity = 1;
   }
 
   _onIdle(e) {
-    console.log('user is idle', e)
-    console.log('last active', this.idleTimer.getLastActiveTime())
+    console.log('user is idle', e);
+    console.log('last active', this.idleTimer.getLastActiveTime());
     this.state.opacity = 0;
   }
   componentDidMount() {
-    this.setState({
-      video: this.refs.video,
-    },
-    () => {
-      ['pause', 'play'].forEach(event => {
-        this.state.video.addEventListener(event, () => {
-          this.forceUpdate();
+    this.setState(
+      {
+        video: this.refs.video,
+      },
+      () => {
+        ['pause', 'play'].forEach(event => {
+          this.state.video.addEventListener(event, () => {
+            this.forceUpdate();
+          });
         });
-      });
-      this.state.video.addEventListener('timeupdate', this.handleProgress);
-    });
+        this.state.video.addEventListener('timeupdate', this.handleProgress);
+      },
+    );
   }
 
   togglePlay() {
     const { video } = this.state;
     const method = video.paused ? 'play' : 'pause';
     video[method]();
+    this.state.height = '0rem';
+    this.state.opacity = 1;
   }
 
   handleProgress() {
     const { video } = this.state;
     const percent = (video.currentTime / video.duration) * 100;
     this.setState({
-      progress: `${percent}%`
+      progress: `${percent}%`,
     });
   }
 
@@ -86,81 +91,95 @@ class Video extends Component {
     if (!isNaN(scrubTime)) {
       this.refs.video.currentTime = scrubTime;
     }
-}
-
-startMouseDown(e) {
-  this.setState({
-    isMouseDown: true
-  });
-}
-
-endMouseDown(e) {
-  this.setState({
-    isMouseDown: false
-  });
-}
-
-skip(e) {
-  const skipValue = e.target.attributes[0].value;
-  if (!isNaN(skipValue)) {
-    this.refs.video.currentTime += Number(skipValue);
   }
-}
+
+  startMouseDown(e) {
+    this.setState({
+      isMouseDown: true,
+    });
+  }
+
+  endMouseDown(e) {
+    this.setState({
+      isMouseDown: false,
+    });
+  }
+
+  skip(e) {
+    const skipValue = e.target.attributes[0].value;
+    if (!isNaN(skipValue)) {
+      this.refs.video.currentTime += Number(skipValue);
+    }
+  }
+
+  handleOnHover() {
+    this.state.height = '20.3rem';
+    this.state.opacity = 0;
+  }
+
+  handleClose() {
+    this.state.height = '0rem';
+    this.state.opacity = 1;
+  }
 
   render() {
     const { video, progress, playbackRate, volume } = this.state;
     return (
-      <div className="player">
-      <IdleTimer
-          ref={ref => { this.idleTimer = ref }}
+      <div className={style.player}>
+        <IdleTimer
+          ref={ref => {
+            this.idleTimer = ref;
+          }}
           element={document}
           onActive={this.onActive}
           onIdle={this.onIdle}
           onAction={this.onAction}
           debounce={250}
-          timeout={2000} />
+          timeout={2000}
+        />
 
-      <div className={style.player__controls}>
-        <button
-          className={style.player__button}
-          title="Toggle Play"
-          style={{'opacity': this.state.opacity}}
-          onClick={this.togglePlay}>
-          { video && video.paused ? '►' : '❚ ❚' }
-        </button>
-    <div
-      className={style.progress}
-      onMouseDown={this.startMouseDown}
-      onMouseUp={this.endMouseDown}
-      style={{'opacity': this.state.opacity}}
-      onMouseLeave={this.endMouseDown}
-      onMouseMove={(e) => this.state.isMouseDown && this.scrub(e)}
-      onClick={this.scrub}
-    >
-     <div
-       className={style.progress__filled}
-       style={{'flexBasis': progress}}
+        <div className={style.player__controls}>
+          <button
+            className={style.player__button}
+            style={{ opacity: this.state.opacity }}
+            onClick={this.togglePlay}
+          >
+            {video && video.paused ? '►' : '❚ ❚'}
+          </button>
+          <div
+            className={style.progress}
+            onMouseDown={this.startMouseDown}
+            onMouseUp={this.endMouseDown}
+            style={{ opacity: this.state.opacity }}
+            onMouseLeave={this.endMouseDown}
+            onMouseMove={e => this.state.isMouseDown && this.scrub(e)}
+            onClick={this.scrub}
+          >
+            <div
+              className={style.progress__filled}
+              style={{ flexBasis: progress }}
             />
-    </div>
+          </div>
 
-
-    <input
-      type="range"
-      name="volume"
-      className={style.player__slider}
-      min="0" max="1" step="0.05" value={volume}
-      onChange={this.handleRangeUpdate}
-    />
-
-  </div>
+          <input
+            type="range"
+            name="volume"
+            className={style.player__slider}
+            style={{ opacity: this.state.opacity }}
+            min="0"
+            max="1"
+            step="0.05"
+            value={volume}
+            onChange={this.handleRangeUpdate}
+          />
+        </div>
+        <div className={style.shadow} style={{ opacity: this.state.opacity }} />
         <video
           className={style.videoCanvas}
-          autoPlay
           ref="video"
-          loop
           onClick={this.togglePlay}
-          >
-          <source src={this.state.videoURL} type='video/mp4' />
+        >
+          <source src={this.state.videoURL} type="video/mp4" />
           <track
             label="English"
             kind="subtitles"
@@ -169,8 +188,7 @@ skip(e) {
             default
           />
         </video>
-
-</div>
+      </div>
     );
   }
 }
