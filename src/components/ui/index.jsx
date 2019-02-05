@@ -17,12 +17,16 @@ const Interface = ({ title }) => (
       </a>
     </h1>
     <div className={style.languages}>
-      <ul className={style.translationList}>
-        <li className={style.translationItem}>NL</li>
-        <li className={style.translationItem}>DE</li>
-        <li className={style.translationItem}>FR</li>
-        <li className={style.translationItem}>EN</li>
-      </ul>
+    <ul className={style.languagepicker}>
+      <a href="#nl"><li><img src="http://i65.tinypic.com/2d0kyno.png"/>Nederlands</li></a>
+      <a href="#en"><li><img src="http://i64.tinypic.com/fd60km.png"/>English</li></a>
+      <a href="#de"><li><img src="http://i63.tinypic.com/10zmzyb.png"/>German</li></a>
+      <a href="#fr"><li><img src="http://i65.tinypic.com/300b30k.png"/>Français</li></a>
+      <a href="#es"><li><img src="http://i68.tinypic.com/avo5ky.png"/>Español</li></a>
+      <a href="#it"><li><img src="http://i65.tinypic.com/23jl6bn.png"/>Italiano</li></a>
+    </ul>
+
+
     </div>
   </div>
 );

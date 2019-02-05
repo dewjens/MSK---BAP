@@ -1,3 +1,11 @@
+@font-face {
+    font-family: 'Baskerville URW Wide';
+    src: url('../../assets/fonts/Baskerville/BaskervilleURWWid-Med.woff2') format('woff2'),
+        url('../../assets/fonts/Baskerville/BaskervilleURWWid-Med.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+}
+
 .artPiece {
   background-size: contain;
   background-repeat: no-repeat;
@@ -6,15 +14,23 @@
   height: 30rem;
   margin: 1rem 5rem;
   flex: 0 0 auto;
-  background-color: black;
-  box-shadow: 0 0.3rem 1rem black;
   display: flex;
   justify-content: center;
   flex-direction: column;
   color: white;
   font-size: 1.2rem;
   align-items: center;
+  transition: all 0.2s ease-in;
 }
+.artPiece:hover {
+  cursor: pointer;
+  transition: all 0.2s ease-in;
+  box-shadow: 0 0.2rem 3rem red;
+}
+.artPiece:hover ~ .artTitle  {
+  color: red;
+}
+
 
 .artSelector {
   height: 70vh;
@@ -115,10 +131,6 @@
   border-radius: 50%;
   background: white;
   position: absolute;
-  left: 0;
-  top: 0;
-  margin-left: 20rem;
-  margin-top: 25rem;
   z-index: 99;
   cursor: pointer;
 
@@ -144,9 +156,16 @@
   &:hover {
     &:before,
     &:after {
-      box-shadow: 0 0 0.5px 0.5px #fff;
+      background-color: red;
+      opacity: 0.6;
+      transition: all .5s ease;
     }
   }
+}
+
+.hs1 {
+  margin-top: 20rem;
+  margin-left: -10rem;
 }
 
 @keyframes pulse-aninmation {
@@ -214,11 +233,9 @@
 }
 
 .artSpots {
-  position: absolute;
-  top: 0;
-  left: 0;
-  margin-left: 8rem;
   margin-top: 8rem;
+  width: 40rem;
+  margin-left: -30rem;
 }
 
 .otherTitle {
@@ -236,11 +253,13 @@
   text-transform: uppercase;
   margin-top: 3rem;
   cursor: pointer;
+  transition: all .5s ease;
 }
 
 .themePicker:hover {
-  background-color: white;
-  color: black;
+  background-color: red;
+  padding: 1rem;
+  transition: all .5s ease;
 }
 
 .themeSection {
@@ -259,6 +278,17 @@
   background-image: url(../../assets/img/enterBg.png);
   background-size: cover;
 }
+.spotLight {
+  width: 100vw;
+  height: 100vh;
+  background-image: url(../../assets/img/spotlight.png);
+  position: absolute;
+  background-repeat: no-repeat;
+  background-position: top center;
+  z-index: -1;
+  top:0;
+  left: 0;
+}
 
 .themeWrapper {
   display: flex;
@@ -271,32 +301,54 @@
 .theme {
   font-size: 2rem;
   text-transform: uppercase;
-  margin-top: 3rem;
   color: black;
-  height: 30rem;
-  width: 20rem;
+  height: 99.6vh;
+  width: 33.3vw;
   position: relative;
   transition: all 0.2s ease-in;
   background-size: cover;
   background-position: center center;
-  box-shadow: 0 0.2rem 1rem black;
+  border: .1rem solid #ffeace;
 }
 
 .theme:hover {
   cursor: pointer;
-  width: 22rem;
-  height: 32rem;
+  width: 55vw;
   transition: all 0.2s ease-in;
-  box-shadow: 0 0.2rem 3rem black;
+  filter: brightness(150%);
+}
+
+.theme:hover .playBtn {
+  transition: all 0.1s ease-in;
+  visibility: visible;
+}
+
+.theme:hover .ontdekBg {
+  transition: all 0.1s ease-in;
+  visibility: visible;
+  border-left: 7rem solid transparent;
+  border-right: 7rem solid transparent;
+  border-bottom: 7rem solid #61503c;
 }
 
 .themeName {
-  color: white;
+  font-family: 'Baskerville URW Wide';
+  color: #ffeace;
+  font-size: 1.5rem;
+}
+
+.themeDescr {
   position: absolute;
   bottom: 0;
+  left: 0;
+  padding-bottom: 10rem;
   width: 100%;
-  font-size: 1rem;
-  padding-bottom: 1rem;
+}
+
+.themeWorks {
+  font-family: 'Baskerville URW Wide';
+  color: #c8b7a1;
+  font-size: 1.25rem;
   padding-top: 1rem;
 }
 
@@ -329,77 +381,192 @@
   text-transform: uppercase;
   z-index: 13;
 }
-
+.playBtn {
+  width: 7rem;
+  height: 7rem;
+  background-image: url('../../assets/img/playBtn.png');
+  background-size: cover;
+  z-index: 200;
+  visibility: hidden;
+  transition: all 0.1s ease-in;
+}
+.playBtnWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
 .themeHeader {
   position: absolute;
-  margin-top: 3rem;
+  margin-top: 2rem;
   font-size: 2rem;
   top: 0;
+  z-index: 200;
+  text-shadow: .1rem .1rem .5rem black;
+  position: absolute;
+  margin-right: 1rem;
+  text-align: right;
+  top: 0;
+  right: 0;
 }
 .themeTitle {
   text-transform: uppercase;
+  font-family: 'Baskerville URW Wide';
+  color: #ffeace;
 }
 
 .themeIntro {
   font-size: 1rem;
-  padding-top: 0.8rem;
+  font-family: 'Baskerville URW Wide';
+  color: #c8b7a1;
 }
 
 .theme1 {
-  background-image: url(../../assets/img/thema1.png);
+  background-image: url(../../assets/img/thema21.jpg);
 }
 
 .theme2 {
-  background-image: url(../../assets/img/thema2.png);
+  background-image: url(../../assets/img/thema11.jpg);
 }
 
-@media only screen and (max-width: 1300px) {
-  .theme {
-    width: 15rem;
-    height: 23rem;
-  }
+.theme3 {
+  background-image: url(../../assets/img/thema31.jpg);
+}
 
-  .theme:hover {
-    width: 16.5rem;
-    height: 24.5rem;
+.skipThema {
+  position: absolute;
+  z-index: 110;
+  cursor: pointer;
+  color: white;
+  text-transform: uppercase;
+  background: none;
+  padding: 1.5rem;
+  border: solid .1rem white;
+  border-color: #ffeace;
+  transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+  bottom: 0;
+  right: 0;
+  margin-bottom: 3rem;
+  margin-right: 3rem;
+}
+
+.skipThema:hover {
+  background-color: transparent;
+  text-shadow: none;
+  color: #61503c;
+}
+
+.skipThema:hover:before {
+  bottom: 0%;
+  top: auto;
+  height: 100%;
+}
+.ontdek {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  color: #ffeace;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all .2s ease;
+  transition: all .2s ease;
+}
+.ontdekBg {
+  z-index: 300;
+  position: relative;
+  left: 0;
+  bottom: 0;
+  border-left: 0rem solid transparent;
+  border-right: 0rem solid transparent;
+  border-bottom: 0rem solid #61503c;
+  font-size: .8rem;
+  visibility: hidden;
+}
+.ontdektext {
+  position:absolute;
+  top: 5rem;
+  left: -3rem;
+  text-align: center;
+}
+.skipThema:before {
+  display: block;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  height: 0px;
+  width: 100%;
+  z-index: -1;
+  content: '';
+  background: #ffeace;
+  transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+}
+.themaTitle {
+  color: #ffeace;
+  font-size: 1.7rem;
+  text-transform: uppercase;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  margin-top: 3rem;
+  text-align: center;
+  z-index: 200;
+}
+.subTitles {
+  position: absolute;
+  width: 100vw;
+  z-index: 200;
+  text-align: center;
+  bottom: 0;
+  left: 0;
+  color: #ffeace;
+  height: 11rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+}
+.subTitle {
+  font-size: 1.5rem;
+  background-color: rgba(0, 0, 0, 0.6);
+  display:inline-block;
+  padding:1rem;
+  line-height: 2rem;
+}
+.subTitleWrapper {
+  width: 60vw;
+}
+@media only screen and (max-width: 1300px) {
+  .subTitleWrapper {
+    width: 50vw;
+  }
+  .subTitle {
+    font-size: 1.3rem;
   }
 }
 
 @media only screen and (max-width: 1000px) {
-  .theme {
-    width: 12.5rem;
-    height: 20rem;
+  .subTitleWrapper {
+    width: 80vw;
+  }
+  .subTitle {
+    font-size: 1rem;
+  }
+  .subTitles {
+    height: 25rem;
   }
 
-  .theme:hover {
-    width: 14.5rem;
-    height: 22.5rem;
-  }
 }
 
 @media only screen and (max-width: 830px) {
-  .theme {
-    width: 30rem;
-    height: 8rem;
-    margin: 0.5rem;
-  }
 
   .themeSection {
     flex-direction: column;
     justify-content: center;
-  }
-
-  .theme:hover {
-    width: 32rem;
-    height: 9.5rem;
-  }
-
-  .theme1 {
-    background-image: url(../../assets/img/thema1rsp.png);
-  }
-
-  .theme2 {
-    background-image: url(../../assets/img/thema2rsp.png);
   }
 
   .themeName {
@@ -410,14 +577,6 @@
     font-size: 1rem;
     padding-top: 0;
     padding-bottom: 0.3rem;
-  }
-
-  .themeHeader {
-    position: absolute;
-    margin-top: 1rem;
-    margin-right: 1rem;
-    top: 0;
-    right: 0;
   }
 
   .themeTitle {
@@ -438,14 +597,22 @@
   .themePicker {
     width: 100vw;
     background-color: black;
-    height: 4rem;
+    height: 3rem;
     margin-left: 0;
     margin-top: 5rem;
+    font-size: 1.3rem;
     display: flex;
     justify-content: center;
     align-items: center;
   }
-
+  .themaTitle {
+    font-size: 1em;
+    margin-top: 1.6rem;
+    top: 0;
+    left: 0;
+    margin-left: -2rem;
+    text-align: right;
+  }
   .artPiece {
     width: 80vw;
     height: 50vh;
@@ -544,5 +711,23 @@
   .themeIntro {
     font-size: 0.7rem;
     padding-top: 0.3rem;
+  }
+  .subTitle {
+    font-size: .8rem;
+    line-height: 1.1rem;
+  }
+  .subTitleWrapper {
+    width: 90vw;
+  }
+  .artSpotTitle {
+    margin-top: -3rem;
+  }
+  .closeBtn {
+    font-size: 1.3rem;
+  }
+  .arspotTitle {
+    margin-top: .5rem;
+    margin-right: .8rem;
+    right: 0;
   }
 }

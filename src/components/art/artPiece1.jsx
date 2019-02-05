@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { hot } from 'react-hot-loader';
 import { Switch, Route, Link } from 'react-router-dom';
-import { Spring } from 'react-spring';
+import { Spring, Transition } from 'react-spring';
 import * as easings from 'd3-ease';
 import style from './art.css';
 import ArtSelector from './artselector';
@@ -12,7 +12,9 @@ import Video from '../video';
 class Artpiece1 extends Component {
   constructor(props) {
     super(props);
-    this.state = { isHidden: false };
+    this.state = { isHidden: false,
+      toggleTp1: true,
+    };
   }
 
   handleMouseToggle() {
@@ -20,7 +22,12 @@ class Artpiece1 extends Component {
       isHidden: !this.state.isHidden,
     });
   }
-
+  toggle1() {
+    this.setState({
+      isHidden: !this.state.isHidden,
+      toggleTp1: !this.state.toggleTp1,
+    });
+  }
   render() {
     const tooltipStyle = {
       visibility: this.state.isHidden ? 'visible' : 'hidden',
@@ -43,34 +50,47 @@ class Artpiece1 extends Component {
               >
                 {props => (
                   <div style={props}>
-                    <span
-                      onClick={this.handleMouseToggle.bind(this)}
-                      className={style.hotspot}
-                    />
-                    <div className={style.detailSection} style={tooltipStyle}>
-                      <h3 className={style.videoTitle}>
-                        Het verhaal over de middeleeuwen
-                      </h3>
-                      <div className={style.videoTooltip}>
-                        <Video />
-                      </div>
-                      <div className={style.descVideo}>
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing
-                        elit, sed do eiusmod tempor incididunt ut labore et
-                        dolore magna aliqua. Ut enim ad minim veniam, quis
-                        nostrud exercitation ullamco laboris nisi ut aliquip ex
-                        ea commodo consequat. Duis aute irure dolor in
-                        reprehenderit in voluptate velit esse cillum dolore eu
-                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                        non proident, sunt in culpa qui officia deserunt mollit
-                        anim id est laborum."
-                      </div>
-                      <h4 className={style.otherTitle}>Andere raakpunten</h4>
-                      <div className={style.otherTouchpoints}>
-                        <div className={style.otherTp} />
-                        <div className={style.otherTp} />
-                      </div>
-                    </div>
+
+                    <Transition
+                      items={this.state.toggleTp1}
+                      from={{ opacity: 0 }}
+                      enter={{ opacity: 1}}
+                      leave={{ opacity: 0}}
+                    >
+                      {toggleTp1 =>
+                        toggleTp1
+                          ? props => (
+                              <div style={props}>
+                              </div>
+                            )
+                          : props => (
+                            <div className={style.detailSection} style={props}>
+                              <h3 className={style.videoTitle}>
+                                Het verhaal over de middeleeuwen
+                              </h3>
+                              <div className={style.videoTooltip}>
+                                <Video />
+                              </div>
+                              <div className={style.descVideo}>
+                                "Lorem ipsum dolor sit amet, consectetur adipiscing
+                                elit, sed do eiusmod tempor incididunt ut labore et
+                                dolore magna aliqua. Ut enim ad minim veniam, quis
+                                nostrud exercitation ullamco laboris nisi ut aliquip ex
+                                ea commodo consequat. Duis aute irure dolor in
+                                reprehenderit in voluptate velit esse cillum dolore eu
+                                fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+                                non proident, sunt in culpa qui officia deserunt mollit
+                                anim id est laborum."
+                              </div>
+                              <h4 className={style.otherTitle}>Andere raakpunten</h4>
+                              <div className={style.otherTouchpoints}>
+                                <div className={style.otherTp} />
+                                <div className={style.otherTp} />
+                              </div>
+                            </div>
+                            )
+                      }
+                    </Transition>
                   </div>
                 )}
               </Spring>
@@ -84,13 +104,15 @@ class Artpiece1 extends Component {
                 config={{ duration: 600, easing: easings.easeCubicOut }}
               >
                 {props => (
-                  <div style={props}>
-                    <img
-                      className={style.artSpots}
-                      src={Art1}
-                      height="700"
-                      width="500"
-                    />
+                  <div className={style.artSpotsWrapper} style={props}>
+                  <span
+                    onClick={this.toggle1.bind(this)}
+                    className={`${style.hotspot} ${style.hs1}`}
+                  />
+                    <video className={style.artSpots} autoPlay loop id="video-background" muted plays-inline>
+                      <source src="http://student.howest.be/jens.de.witte/20182019/videos/thema11.mp4" type="video/mp4" />
+                    </video>
+
                   </div>
                 )}
               </Spring>

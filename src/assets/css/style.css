@@ -2,7 +2,6 @@
    v2.0 | 20110126
    License: none (public domain)
 */
-
 html,
 body,
 div,
@@ -129,14 +128,13 @@ table {
 }
 
 html {
-  background-color: #212121;
-  font-family: 'Roboto', 'Arial', sans-serif;
+  background-image: url('../img/themaSelectorBg.png');
+  background-size: cover;
+  font-family: 'Baskerville URW Wide', 'Roboto', 'Arial', sans-serif;
   overflow-y: hidden;
   overflow-x: hidden;
-  background-image: url(../img/bg.png);
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 60%;
   scroll-behavior: smooth;
 }
 
@@ -166,7 +164,7 @@ main {
   text-transform: uppercase;
   padding: 1rem;
   font-weight: bold;
-  border-color: red;
+  border-color: #ffeace;
   transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
   margin-top: 10rem;
 }
@@ -174,6 +172,7 @@ main {
 .enterBtn:hover {
   background-color: transparent;
   text-shadow: none;
+  color: #61503c;
 }
 
 .enterBtn:hover:before {
@@ -191,7 +190,7 @@ main {
   width: 100%;
   z-index: -1;
   content: '';
-  background: red;
+  background: #ffeace;
   transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
 }
 
@@ -227,13 +226,13 @@ main {
   margin-top: -5rem;
   text-align: center;
   font-size: 3rem;
-  color: white;
   text-transform: uppercase;
+  color: #ffeace;
 }
 
 .enterTitle2 {
   font-size: 1.6rem;
-  color: white;
+  color: #c8b7a1;
   font-weight: 300;
   margin-bottom: 2.5rem;
 }
@@ -257,13 +256,14 @@ main {
 }
 
 @media only screen and (max-width: 550px) {
+
   .enterTitle {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     margin-top: -2rem;
   }
 
   .enterTitle2 {
-    font-size: 0.8rem;
+    font-size: 1rem;
   }
 
   .enterDesc {

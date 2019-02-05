@@ -37,7 +37,7 @@ class App extends Component {
               onClick={this.onButtonClick}
               type="button"
             >
-              Ontdek de verhalen
+              Ontdek de thema's
             </button>
           </div>
         ) : null}

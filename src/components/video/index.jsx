@@ -14,7 +14,7 @@ class Video extends Component {
     this.endMouseDown = this.endMouseDown.bind(this);
     this.skip = this.skip.bind(this);
     this.state = {
-      videoURL: 'http://clips.vorwaerts-gmbh.de/VfE_html5.mp4',
+      videoURL: 'http://student.howest.be/jens.de.witte/20182019/videos/thema1.mp4',
       progress: '0%',
       playbackRate: 1,
       volume: 1,
@@ -177,16 +177,11 @@ class Video extends Component {
         <video
           className={style.videoCanvas}
           ref="video"
+          loop
+          autoPlay
           onClick={this.togglePlay}
         >
           <source src={this.state.videoURL} type="video/mp4" />
-          <track
-            label="English"
-            kind="subtitles"
-            srcLang="en"
-            src="http://source.vtt"
-            default
-          />
         </video>
       </div>
     );

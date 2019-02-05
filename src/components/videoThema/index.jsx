@@ -177,6 +177,8 @@ class Video extends Component {
         <video
           className={style.videoCanvas}
           ref="video"
+          autoPlay
+          loop
           onClick={this.togglePlay}
         >
           <source src={this.state.videoURL} type="video/mp4" />
