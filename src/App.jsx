@@ -3,7 +3,6 @@ import { hot } from 'react-hot-loader';
 import Interface from './components/ui';
 import Artselector from './components/art/Artselector';
 import style from './assets/css/style.css';
-
 /* eslint-disable */
 class App extends Component {
   constructor(props) {

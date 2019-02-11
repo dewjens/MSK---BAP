@@ -3,18 +3,15 @@ import { hot } from 'react-hot-loader';
 import { Switch, Route, Link } from 'react-router-dom';
 import { Spring, Transition } from 'react-spring';
 import * as easings from 'd3-ease';
+import { Tooltip } from 'react-tippy';
 import style from './art.css';
 import ArtSelector from './artselector';
-import Art2 from '../../assets/img/art1.jpg';
 import Video from '../video';
 /* eslint-disable */
-
 class Artpiece2 extends Component {
   constructor(props) {
     super(props);
-    this.state = { isHidden: false,
-      toggleTp1: true,
-    };
+    this.state = { isHidden: false, toggleTp1: true };
   }
 
   handleMouseToggle() {
@@ -22,113 +19,126 @@ class Artpiece2 extends Component {
       isHidden: !this.state.isHidden,
     });
   }
+
+  closeVideo(value) {
+    if (value === 1){
+      this.setState({
+        toggleTp1: !this.state.toggleTp1,
+      });
+    }
+
+    if (value === 0) {
+      this.setState({
+        toggleTp1: this.state.toggleTp1,
+      });
+    }
+  }
+
   toggle1() {
     this.setState({
       isHidden: !this.state.isHidden,
       toggleTp1: !this.state.toggleTp1,
     });
   }
+
   render() {
-    const tooltipStyle = {
-      visibility: this.state.isHidden ? 'visible' : 'hidden',
-    };
     return (
-      <Spring
-        delay={100}
-        from={{ opacity: 0 }}
-        to={{ opacity: 1 }}
-        config={{ duration: 500, easing: easings.easePolyIn }}
-      >
-        {props => (
-          <div style={props}>
-            <section className={style.artSection}>
-              <Spring
-                delay={500}
-                from={{ height: 0, width: 0, opacity: 0 }}
-                to={{ height: 6, width: 6, opacity: 1 }}
-                config={{ duration: 100, easing: easings.easeElasticIn }}
+      <section className={style.artSection}>
+        <Spring
+          delay={500}
+          from={{ height: 0, width: 0, opacity: 0 }}
+          to={{ height: 6, width: 6, opacity: 1 }}
+          config={{ duration: 100, easing: easings.easeElasticIn }}
+        >
+          {props => (
+            <div style={props}>
+              <Transition
+                items={this.state.toggleTp1}
+                from={{ opacity: 0 }}
+                enter={{ opacity: 1 }}
+                leave={{ opacity: 0 }}
               >
-                {props => (
-                  <div style={props}>
-
-                    <Transition
-                      items={this.state.toggleTp1}
-                      from={{ opacity: 0 }}
-                      enter={{ opacity: 1}}
-                      leave={{ opacity: 0}}
-                    >
-                      {toggleTp1 =>
-                        toggleTp1
-                          ? props => (
-                              <div style={props}>
-                              </div>
-                            )
-                          : props => (
-                            <div className={style.detailSection} style={props}>
-                              <h3 className={style.videoTitle}>
-                                Het verhaal over de middeleeuwen
-                              </h3>
-                              <div className={style.videoTooltip}>
-                                <Video />
-                              </div>
-                              <div className={style.descVideo}>
-                                "Lorem ipsum dolor sit amet, consectetur adipiscing
-                                elit, sed do eiusmod tempor incididunt ut labore et
-                                dolore magna aliqua. Ut enim ad minim veniam, quis
-                                nostrud exercitation ullamco laboris nisi ut aliquip ex
-                                ea commodo consequat. Duis aute irure dolor in
-                                reprehenderit in voluptate velit esse cillum dolore eu
-                                fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                                non proident, sunt in culpa qui officia deserunt mollit
-                                anim id est laborum."
-                              </div>
-                              <h4 className={style.otherTitle}>Andere raakpunten</h4>
-                              <div className={style.otherTouchpoints}>
-                                <div className={style.otherTp} />
-                                <div className={style.otherTp} />
-                              </div>
-                            </div>
-                            )
-                      }
-                    </Transition>
-                  </div>
-                )}
-              </Spring>
-              <div className={style.arspotTitle}>
-                <h2>Artwork 1</h2>
-                <h2 className={style.artMaker}>Jan Van Eyck</h2>
-              </div>
-              <Spring
-                from={{ marginTop: 2000 }}
-                to={{ marginTop: 0 }}
-                config={{ duration: 600, easing: easings.easeCubicOut }}
-              >
-                {props => (
-                  <div className={style.artSpotsWrapper} style={props}>
-                  <span
-                    onClick={this.toggle1.bind(this)}
-                    className={`${style.hotspot} ${style.hs1}`}
-                  />
-                    <video className={style.artSpots} autoPlay loop id="video-background" muted plays-inline>
-                      <source src="http://student.howest.be/jens.de.witte/20182019/videos/thema21.mp4" type="video/mp4" />
-                    </video>
-
-                  </div>
-                )}
-              </Spring>
+                {toggleTp1 =>
+                  toggleTp1
+                    ? props => <div style={props} />
+                    : props => (
+                      <div className={style.detailSection} style={props}>
+                        <div className={style.videoTooltip}>
+                          <Video closeVideo={this.closeVideo.bind(this)} url={'http://student.howest.be/jens.de.witte/20182019/videos/thema121.mp4'}/>
+                        </div>
+                      </div>
+                    )
+                }
+              </Transition>
+            </div>
+          )}
+        </Spring>
+        <Spring
+          delay={500}
+          from={{ opacity: 0 }}
+          to={{opacity: 1 }}
+          config={{ duration: 800, easing: easings.ease }}
+        >
+          {props => (
+            <div style={props}>
               <Link to="../">
                 <button className={style.closeBtn}>Sluit</button>
               </Link>
-              <section className="art-section">
-                <Switch>
-                  <Route path="../" component={ArtSelector} />
-                  <Route path="/first/video" component={Video} />
-                </Switch>
-              </section>
-            </section>
-          </div>
-        )}
-      </Spring>
+              <span className={style.click}>Klik op een hotspot om het verhaal te ontdekken</span>
+              <div className={style.artworkSpots}>
+                <div className={`${style.videoBox} ${style.vb2}`}>
+                  <div className={style.artSpots}>
+                    <Tooltip
+                      html={(
+                        <div className={style.spotDesc}>
+                          <strong>
+                            Joos Vijd staat hoog in de Sint-Baafskathedraal om
+                            aan te tonen dat hij nauw betrokken was bij de
+                            Sint-Janskerk (later Sint-Baafskathedraal genoemd).
+                            <br />
+                            <br />
+                            Het geld dat hij vast heeft wordt doorgegeven aan
+                            Hubert Van Eyck (de broer van Jan Van Eyck) die de
+                            opdracht aannam. Hubert/Jan van Eyck staat lager in
+                            de toren, op de vermoedelijke plaats vanwaar ze dit
+                            uitzicht hebben geschilderd.
+                          </strong>
+                        </div>
+                      )}
+                      followCursor="true"
+                      trigger="mouseenter"
+                    >
+                      <span
+                        onClick={this.toggle1.bind(this)}
+                        className={`${style.hotspot} ${style.hs2}`} />
+                    </Tooltip>
+                  </div>
+                  <div className={style.videoWrapper}>
+                    <video
+                      className={style.artSpots}
+                      autoPlay
+                      loop
+                      id="video-background"
+                      muted
+                      plays-inline>
+                      <source
+                        src="http://student.howest.be/jens.de.witte/20182019/videos/thema12.mp4"
+                        type="video/mp4" />
+                    </video>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+        </Spring>
+        <div className={style.spotLight} />
+        <section className="art-section">
+          <Switch>
+            <Route path="../" component={ArtSelector} />
+            <Route path="/first/video" component={Video} />
+          </Switch>
+        </section>
+      </section>
     );
   }
 }

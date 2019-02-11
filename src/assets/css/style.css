@@ -126,6 +126,15 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+@font-face {
+  font-family: 'Baskerville URW Wide';
+  src: url('../../assets/fonts/Baskerville/BaskervilleURWWid-Med.woff2')
+      format('woff2'),
+    url('../../assets/fonts/Baskerville/BaskervilleURWWid-Med.woff')
+      format('woff');
+  font-weight: 500;
+  font-style: normal;
+}
 
 html {
   background-image: url('../img/themaSelectorBg.png');
@@ -135,7 +144,6 @@ html {
   overflow-x: hidden;
   background-repeat: no-repeat;
   background-position: center;
-  scroll-behavior: smooth;
 }
 
 main {
@@ -144,6 +152,8 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow-y: hidden;
+  overflow-x: hidden;
 }
 
 .light {
@@ -256,7 +266,6 @@ main {
 }
 
 @media only screen and (max-width: 550px) {
-
   .enterTitle {
     font-size: 1.5rem;
     margin-top: -2rem;

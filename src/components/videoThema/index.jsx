@@ -179,6 +179,7 @@ class Video extends Component {
           ref="video"
           autoPlay
           loop
+          plays-inline
           onClick={this.togglePlay}
         >
           <source src={this.state.videoURL} type="video/mp4" />

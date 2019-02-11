@@ -14,36 +14,23 @@ class Video extends Component {
     this.endMouseDown = this.endMouseDown.bind(this);
     this.skip = this.skip.bind(this);
     this.state = {
-      videoURL: 'http://student.howest.be/jens.de.witte/20182019/videos/thema1.mp4',
+      videoURL:
+        'http://student.howest.be/jens.de.witte/20182019/videos/thema1.mp4',
       progress: '0%',
       playbackRate: 1,
       volume: 1,
       isMouseDown: false,
       opacity: 1,
       height: '0rem',
+      fullscreen: true,
     };
     this.idleTimer = null;
-    this.onAction = this._onAction.bind(this);
     this.onActive = this._onActive.bind(this);
     this.onIdle = this._onIdle.bind(this);
     this.handleOnHover = this.handleOnHover.bind(this);
     this.handleClose = this.handleClose.bind(this);
   }
-  _onAction(e) {
-    console.log('user did something', e);
-  }
 
-  _onActive(e) {
-    console.log('user is active', e);
-    console.log('time remaining', this.idleTimer.getRemainingTime());
-    this.state.opacity = 1;
-  }
-
-  _onIdle(e) {
-    console.log('user is idle', e);
-    console.log('last active', this.idleTimer.getLastActiveTime());
-    this.state.opacity = 0;
-  }
   componentDidMount() {
     this.setState(
       {
@@ -60,6 +47,14 @@ class Video extends Component {
     );
   }
 
+  _onActive() {
+    this.state.opacity = 1;
+  }
+
+  _onIdle() {
+    this.state.opacity = 0;
+  }
+
   togglePlay() {
     const { video } = this.state;
     const method = video.paused ? 'play' : 'pause';
@@ -74,6 +69,12 @@ class Video extends Component {
     this.setState({
       progress: `${percent}%`,
     });
+    if(this.state.progress < '100%'){
+      this.props.closeVideo(0);
+    }
+    if(this.state.progress == '100%'){
+      this.props.closeVideo(1);
+    }
   }
 
   handleRangeUpdate(e) {
@@ -93,13 +94,13 @@ class Video extends Component {
     }
   }
 
-  startMouseDown(e) {
+  startMouseDown() {
     this.setState({
       isMouseDown: true,
     });
   }
 
-  endMouseDown(e) {
+  endMouseDown() {
     this.setState({
       isMouseDown: false,
     });
@@ -125,7 +126,7 @@ class Video extends Component {
   render() {
     const { video, progress, playbackRate, volume } = this.state;
     return (
-      <div className={style.player}>
+      <div className={`${style.player} ${this.state.fullscreen ? `${style.fullscreenPlayer}`: null}`} >
         <IdleTimer
           ref={ref => {
             this.idleTimer = ref;
@@ -139,13 +140,7 @@ class Video extends Component {
         />
 
         <div className={style.player__controls}>
-          <button
-            className={style.player__button}
-            style={{ opacity: this.state.opacity }}
-            onClick={this.togglePlay}
-          >
-            {video && video.paused ? '►' : '❚ ❚'}
-          </button>
+
           <div
             className={style.progress}
             onMouseDown={this.startMouseDown}
@@ -160,7 +155,6 @@ class Video extends Component {
               style={{ flexBasis: progress }}
             />
           </div>
-
           <input
             type="range"
             name="volume"
@@ -177,11 +171,11 @@ class Video extends Component {
         <video
           className={style.videoCanvas}
           ref="video"
-          loop
           autoPlay
+          plays-inline
           onClick={this.togglePlay}
         >
-          <source src={this.state.videoURL} type="video/mp4" />
+          <source src={this.props.url} type="video/mp4" />
         </video>
       </div>
     );
