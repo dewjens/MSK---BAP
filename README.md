@@ -6,3 +6,10 @@ INSTRUCTIONS
 - Clone repo
 - Yarn install
 - Yarn start
+
+TECHNOLOGIES USED
+-ReactJS
+-ES6
+-React-Spring
+-D3-ease
+-Nuka Carrousel
