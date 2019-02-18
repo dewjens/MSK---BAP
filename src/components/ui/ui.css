@@ -27,6 +27,31 @@
   text-align: right;
   z-index: -2;
 }
+.subTitles {
+  position: absolute;
+  width: 100vw;
+  z-index: 200;
+  text-align: center;
+  bottom: 0;
+  left: 0;
+  color: #ffeace;
+  height: 11rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+}
+.subTitle {
+  font-size: 1.2rem;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: inline-block;
+  padding: 1rem;
+  line-height: 1.5rem;
+}
+.subTitleWrapper {
+  width: 60vw;
+}
 
 .videoCanvas {
   width: 100%;
@@ -38,29 +63,14 @@
   height: 17.7rem;
   position: relative;
   background-color: black;
-  transition: all .2s ease;
-}
-.fullscreen {
-  width: 2rem;
-  height: 2rem;
-  background-image: url('../../assets/img/fullscreen.svg');
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  margin-bottom: 2rem;
-  margin-right: 2rem;
-  z-index: 4344
-}
-.fullscreen:hover {
-  cursor: pointer;
-  z-index: 201;
+  transition: all 0.2s ease;
 }
 .fullscreenPlayer {
   position: fixed;
   top: 0;
   left: 0;
   height: 100vh;
-  transition: all .2s ease;
+  transition: all 0.2s ease;
 }
 .player__controls {
   position: absolute;
@@ -121,11 +131,8 @@
 }
 
 .shadow {
-  background: url(../../assets/img/shadow.png) no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+  box-shadow: 0 0 500px 5px black inset;
+  background-color: rgba(0, 0, 0, .1);
   pointer-events: none;
   width: 100%;
   height: 100%;
@@ -315,6 +322,43 @@ input[type='range']::-webkit-slider-thumb:active {
   margin-right: 0.5rem;
 }
 
+@media only screen and (max-width: 1400px) {
+  .subTitleWrapper {
+    width: 45vw;
+  }
+  .subTitle {
+    font-size: 1rem;
+  }
+}
+
+@media only screen and (max-width: 1300px) {
+  .subTitleWrapper {
+    width: 50vw;
+  }
+  .subTitle {
+    font-size: 1rem;
+  }
+}
+@media only screen and (max-width: 1150px) {
+  .subTitleWrapper {
+    width: 45vw;
+  }
+  .subTitle {
+    font-size: 1rem;
+  }
+}
+@media only screen and (max-width: 1000px) {
+  .subTitleWrapper {
+    width: 80vw;
+  }
+  .subTitle {
+    font-size: 1rem;
+  }
+  .subTitles {
+    height: 25rem;
+  }
+}
+
 @media only screen and (max-width: 630px) {
   .info {
     font-size: 0.9rem;
@@ -331,10 +375,15 @@ input[type='range']::-webkit-slider-thumb:active {
     right: 0;
     top: 0;
     margin-top: 1rem;
-    margin-right: -1rem;
-    left: auto;
   }
   .languagepicker li {
-    font-size: .8rem;
+    font-size: 0.8rem;
+  }
+  .subTitle {
+    font-size: 0.8rem;
+    line-height: 1.1rem;
+  }
+  .subTitleWrapper {
+    width: 90vw;
   }
 }

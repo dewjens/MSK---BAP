@@ -24,6 +24,13 @@ module.exports = {
         exclude: /(node_modules)/,
       },
       {
+        test: /\.mp3$/,
+        loader: 'file-loader',
+        query: {
+          name: 'assets/audio/[name].[hash:8].[ext]',
+        },
+      },
+      {
         test: /\.(png|jpg|gif|svg)$/,
         use: [
           {

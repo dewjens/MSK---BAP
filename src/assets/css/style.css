@@ -138,12 +138,9 @@ table {
 
 html {
   background-image: url('../img/themaSelectorBg.png');
-  background-size: cover;
   font-family: 'Baskerville URW Wide', 'Roboto', 'Arial', sans-serif;
   overflow-y: hidden;
   overflow-x: hidden;
-  background-repeat: no-repeat;
-  background-position: center;
 }
 
 main {
@@ -174,7 +171,8 @@ main {
   text-transform: uppercase;
   padding: 1rem;
   font-weight: bold;
-  border-color: #ffeace;
+  border: solid .1rem #ffeace;
+  font-family: 'Baskerville URW Wide';
   transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
   margin-top: 10rem;
 }
@@ -213,10 +211,15 @@ main {
   width: 100vw;
   height: 100vh;
   background-color: #212121;
-  background-image: url(../img/enterBg.png);
+  background-image: url(../img/enterBg.jpg);
   background-size: cover;
 }
-
+.preloader {
+  background-color: red;
+  background: none;
+  color: red;
+  font-size: 300rem;
+}
 .enterDesc {
   text-align: center;
   width: 30rem;

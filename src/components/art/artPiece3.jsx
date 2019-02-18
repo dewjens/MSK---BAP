@@ -20,8 +20,14 @@ class Artpiece3 extends Component {
     });
   }
 
+    closeStory(){
+      this.setState({
+        toggleTp1: !this.state.toggleTp1,
+      });
+    }
+
   closeVideo(value) {
-    if (value === 1){
+    if (value === 1) {
       this.setState({
         toggleTp1: !this.state.toggleTp1,
       });
@@ -48,7 +54,8 @@ class Artpiece3 extends Component {
           delay={500}
           from={{ height: 0, width: 0, opacity: 0 }}
           to={{ height: 6, width: 6, opacity: 1 }}
-          config={{ duration: 100, easing: easings.easeElasticIn }}>
+          config={{ duration: 100, easing: easings.easeCubic }}
+        >
           {props => (
             <div style={props}>
               <Transition
@@ -61,12 +68,23 @@ class Artpiece3 extends Component {
                   toggleTp1
                     ? props => <div style={props} />
                     : props => (
-                      <div className={style.detailSection} style={props}>
-                        <div className={style.videoTooltip}>
-                          <Video closeVideo={this.closeVideo.bind(this)} url={'http://student.howest.be/jens.de.witte/20182019/videos/thema211.mp4'}/>
+                        <div className={style.detailSection} style={props}>
+                          <div className={style.videoTooltip}>
+                          <span
+                            onClick={this.closeStory.bind(this)}
+                            className={style.skipThema}
+                          >
+                            Sluit
+                          </span>
+                            <Video
+                              closeVideo={this.closeVideo.bind(this)}
+                              url={
+                                'http://student.howest.be/jens.de.witte/20182019/videos/thema211.mp4'
+                              }
+                            />
+                          </div>
                         </div>
-                      </div>
-                    )
+                      )
                 }
               </Transition>
             </div>
@@ -75,32 +93,37 @@ class Artpiece3 extends Component {
         <Spring
           delay={500}
           from={{ opacity: 0 }}
-          to={{opacity: 1 }}
-          config={{ duration: 800, easing: easings.ease }}>
+          to={{ opacity: 1 }}
+          config={{ duration: 800, easing: easings.easeCubic }}
+        >
           {props => (
             <div style={props}>
               <Link to="../">
                 <button className={style.closeBtn}>Sluit</button>
               </Link>
-              <span className={style.click}>Klik op een hotspot om het verhaal te ontdekken</span>
+              <span className={style.click}>
+                Klik op een hotspot om het verhaal te ontdekken
+              </span>
               <div className={style.artworkSpots}>
                 <div className={`${style.videoBox} ${style.vb3}`}>
                   <div className={style.artSpots}>
                     <Tooltip
-                      html={(
+                      html={
                         <div className={style.spotDesc}>
-                        <strong>
-                          Gabriël komt aan en begroet Maria met  "Hail, full of grace! Blessed are you among women."
-                          (Ave gratia plena Dominus tecum benedicta tu in mulieribus)
+                          <strong>
+                            Gabriël komt aan en begroet Maria met "Hail, full of
+                            grace! Blessed are you among women." (Ave gratia
+                            plena Dominus tecum benedicta tu in mulieribus)
                           </strong>
                         </div>
-                      )}
+                      }
                       followCursor="true"
                       trigger="mouseenter"
                     >
                       <span
                         onClick={this.toggle1.bind(this)}
-                        className={`${style.hotspot} ${style.hs3}`} />
+                        className={`${style.hotspot} ${style.hs3}`}
+                      />
                     </Tooltip>
                   </div>
                   <div className={style.videoWrapper}>

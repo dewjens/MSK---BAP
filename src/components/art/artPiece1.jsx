@@ -9,7 +9,6 @@ import ArtSelector from './artselector';
 import Video from '../video';
 /* eslint-disable */
 class Artpiece1 extends Component {
-
   constructor(props) {
     super(props);
     this.state = { toggleTp1: true };
@@ -21,8 +20,14 @@ class Artpiece1 extends Component {
     });
   }
 
+  closeStory(){
+    this.setState({
+      toggleTp1: !this.state.toggleTp1,
+    });
+  }
+
   closeVideo(value) {
-    if (value === 1){
+    if (value === 1) {
       this.setState({
         toggleTp1: !this.state.toggleTp1,
       });
@@ -57,14 +62,21 @@ class Artpiece1 extends Component {
                   toggleTp1
                     ? props => <div style={props} />
                     : props => (
-                      <div className={style.detailSection} style={props}>
-                        <div className={style.videoTooltip}>
-                          <Video
-                            closeVideo={this.closeVideo.bind(this)}
-                            url="http://student.howest.be/jens.de.witte/20182019/videos/thema111.mp4" />
+                        <div className={style.detailSection} style={props}>
+                          <div className={style.videoTooltip}>
+                          <span
+                            onClick={this.closeStory.bind(this)}
+                            className={style.skipThema}
+                          >
+                            Sluit
+                          </span>
+                            <Video
+                              closeVideo={this.closeVideo.bind(this)}
+                              url="http://student.howest.be/jens.de.witte/20182019/videos/thema111.mp4"
+                            />
+                          </div>
                         </div>
-                      </div>
-                    )
+                      )
                 }
               </Transition>
             </div>
@@ -73,20 +85,23 @@ class Artpiece1 extends Component {
         <Spring
           delay={500}
           from={{ opacity: 0 }}
-          to={{opacity: 1 }}
+          to={{ opacity: 1 }}
           config={{ duration: 800, easing: easings.easeCubic }}
         >
           {props => (
             <div style={props}>
+              <div className={style.shadow} style={{ opacity: this.state.opacity }} />
               <Link to="../">
                 <button className={style.closeBtn}>Sluit</button>
               </Link>
-              <span className={style.click}>Klik op een hotspot om het verhaal te ontdekken</span>
+              <span className={style.click}>
+                Klik op een hotspot om het verhaal te ontdekken
+              </span>
               <div className={style.artworkSpots}>
                 <div className={`${style.videoBox} ${style.vb1}`}>
                   <div className={style.artSpots}>
                     <Tooltip
-                      html={(
+                      html={
                         <div className={style.spotDesc}>
                           <strong>
                             Nicolas liet zijn gebedshuisje opknappen met geld.
@@ -96,7 +111,7 @@ class Artpiece1 extends Component {
                             onthouden wou worden als edelman
                           </strong>
                         </div>
-                      )}
+                      }
                       followCursor="true"
                       trigger="mouseenter"
                     >
@@ -113,10 +128,12 @@ class Artpiece1 extends Component {
                       loop
                       id="video-background"
                       muted
-                      plays-inline >
+                      plays-inline
+                    >
                       <source
                         src="http://student.howest.be/jens.de.witte/20182019/videos/thema11.mp4"
-                        type="video/mp4" />
+                        type="video/mp4"
+                      />
                     </video>
                   </div>
                 </div>

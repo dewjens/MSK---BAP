@@ -32,41 +32,63 @@ class Thema1Selector extends Component {
     return (
       <div className={style.themeWrapper}>
         <div className={style.artSelector}>
-          <Carousel renderBottomCenterControls={false} focusOnSelect={true} slidesToShow={2} wrapAround={false} slidesToScroll={1} slideIndex={0} cellAlign="center" cellSpacing={200} dragging={true}
+          <Carousel
+            renderBottomCenterControls={false}
+            focusOnSelect={true}
+            slidesToShow={2}
+            wrapAround={false}
+            slidesToScroll={1}
+            slideIndex={0}
+            cellAlign="center"
+            cellSpacing={200}
+            dragging={true}
             renderCenterLeftControls={({ previousSlide }) => (
-              <button className={style.moveBtn} onClick={previousSlide}><img className={style.moveArrow} src={Back}/></button>
+              <button className={style.moveBtn} onClick={previousSlide}>
+                <img className={style.moveArrow} src={Back} />
+              </button>
             )}
             renderCenterRightControls={({ nextSlide }) => (
-              <button className={style.moveBtn} onClick={nextSlide}><img className={style.moveArrow} src={Next}/></button>
-            )}>
+              <button className={style.moveBtn} onClick={nextSlide}>
+                <img className={style.moveArrow} src={Next} />
+              </button>
+            )}
+          >
             <section className={style.artWrapper}>
               <Link className={style.link} to="/first">
                 <picture>
-                  <img className={`${style.artPiece} ${style.ap1}`}
+                  <img
+                    className={`${style.artPiece} ${style.ap1}`}
                     src={Art1}
-                    alt="art1"/>
+                    alt="art1"
+                  />
                 </picture>
-                <h2 className={style.artTitle}>Madonna van Rolin</h2>
-                <h3 className={style.artMaker}>Jan Van Eyck</h3>
+                <h2 className={style.artTitle}>De Maagd van kanselier Rolin</h2>
+                <h3 className={style.artMaker}>Église Notre-Dame du Châtel d'Autun</h3>
               </Link>
             </section>
             <section className={style.artWrapper}>
               <Link className={style.link} to="/second">
                 <picture>
-                  <img className={`${style.artPiece} ${style.ap2}`}
+                  <img
+                    className={`${style.artPiece} ${style.ap2}`}
                     src={Art2}
-                    alt="art2"/>
+                    alt="art2"
+                  />
                 </picture>
-                <h2 className={style.artTitle}>Lam Gods 14. Interior with city view</h2>
-                <h2 className={style.artMaker}>Jan Van Eyck</h2>
+                <h2 className={style.artTitle}>
+                  Lam Gods 14. Interior with city view
+                </h2>
+                <h2 className={style.artMaker}>Buitenpaneel</h2>
               </Link>
             </section>
             <section className={style.artWrapper}>
               <Link className={style.link} to="/">
                 <picture>
-                  <img className={`${style.artPiece} ${style.ap3}`}
+                  <img
+                    className={`${style.artPiece} ${style.ap3}`}
                     src={Art3}
-                    alt="art3 "/>
+                    alt="art3 "
+                  />
                 </picture>
                 <h2 className={style.artTitle}>Antwerpen, Sint Barbara</h2>
                 <h2 className={style.artMaker}>Jan Van Eyck</h2>
@@ -78,7 +100,8 @@ class Thema1Selector extends Component {
                   <img
                     className={`${style.artPiece} ${style.ap4}`}
                     src={Art4}
-                    alt="art4"/>
+                    alt="art4"
+                  />
                 </picture>
                 <h2 className={style.artTitle}>Dresden, Tryptich</h2>
                 <h2 className={style.artMaker}>Jan Van Eyck</h2>

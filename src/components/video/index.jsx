@@ -69,10 +69,10 @@ class Video extends Component {
     this.setState({
       progress: `${percent}%`,
     });
-    if(this.state.progress < '100%'){
+    if (this.state.progress < '100%') {
       this.props.closeVideo(0);
     }
-    if(this.state.progress == '100%'){
+    if (this.state.progress == '100%') {
       this.props.closeVideo(1);
     }
   }
@@ -126,7 +126,11 @@ class Video extends Component {
   render() {
     const { video, progress, playbackRate, volume } = this.state;
     return (
-      <div className={`${style.player} ${this.state.fullscreen ? `${style.fullscreenPlayer}`: null}`} >
+      <div
+        className={`${style.player} ${
+          this.state.fullscreen ? `${style.fullscreenPlayer}` : null
+        }`}
+      >
         <IdleTimer
           ref={ref => {
             this.idleTimer = ref;
@@ -140,7 +144,6 @@ class Video extends Component {
         />
 
         <div className={style.player__controls}>
-
           <div
             className={style.progress}
             onMouseDown={this.startMouseDown}
@@ -172,7 +175,7 @@ class Video extends Component {
           className={style.videoCanvas}
           ref="video"
           autoPlay
-          plays-inline
+          playsInline
           onClick={this.togglePlay}
         >
           <source src={this.props.url} type="video/mp4" />

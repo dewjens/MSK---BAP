@@ -30,20 +30,35 @@ class Thema2Selector extends Component {
     return (
       <div className={style.themeWrapper}>
         <div className={style.artSelector}>
-          <Carousel renderBottomCenterControls={false} focusOnSelect={true} slidesToShow={2} wrapAround={false} slidesToScroll={1} slideIndex={0} cellAlign="center" cellSpacing={200} dragging={true}
+          <Carousel
+            renderBottomCenterControls={false}
+            focusOnSelect={true}
+            slidesToShow={2}
+            wrapAround={false}
+            slidesToScroll={1}
+            slideIndex={0}
+            cellAlign="center"
+            cellSpacing={200}
+            dragging={true}
             renderCenterLeftControls={({ previousSlide }) => (
-              <button className={style.moveBtn} onClick={previousSlide}><img className={style.moveArrow} src={Back}/></button>
+              <button className={style.moveBtn} onClick={previousSlide}>
+                <img className={style.moveArrow} src={Back} />
+              </button>
             )}
             renderCenterRightControls={({ nextSlide }) => (
-              <button className={style.moveBtn} onClick={nextSlide}><img className={style.moveArrow} src={Next}/></button>
-            )}>
+              <button className={style.moveBtn} onClick={nextSlide}>
+                <img className={style.moveArrow} src={Next} />
+              </button>
+            )}
+          >
             <section className={style.artWrapper}>
               <Link className={style.link} to="/third">
                 <picture>
                   <img
                     className={`${style.artPiece} ${style.ap5}`}
                     src={Art5}
-                    alt="art5"/>
+                    alt="art5"
+                  />
                 </picture>
                 <h2 className={style.artTitle}>
                   Annunciatie Thyssen-Bornemisza
@@ -57,12 +72,13 @@ class Thema2Selector extends Component {
                   <img
                     className={`${style.artPiece} ${style.ap6}`}
                     src={Art8}
-                    alt="art5"/>
+                    alt="art5"
+                  />
                 </picture>
                 <h2 className={style.artTitle}>
                   Annunciatie Thyssen-Bornemisza
                 </h2>
-                <h2 className={style.artMaker}>Linkerpaneel</h2>
+                <h2 className={style.artMaker}>Rechterpaneel</h2>
               </Link>
             </section>
             <section className={style.artWrapper}>
@@ -71,7 +87,8 @@ class Thema2Selector extends Component {
                   <img
                     className={`${style.artPiece} ${style.ap7}`}
                     src={Art6}
-                    alt="art2"/>
+                    alt="art2"
+                  />
                 </picture>
                 <h2 className={style.artTitle}>Dresden, Tryptich</h2>
                 <h2 className={style.artMaker}>Linker paneel</h2>
@@ -83,7 +100,8 @@ class Thema2Selector extends Component {
                   <img
                     className={`${style.artPiece} ${style.ap8}`}
                     src={Art7}
-                    alt="art2"/>
+                    alt="art2"
+                  />
                 </picture>
                 <h2 className={style.artTitle}>Dresden, Tryptich</h2>
                 <h2 className={style.artMaker}>rechter paneel</h2>
