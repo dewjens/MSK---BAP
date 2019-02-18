@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
 import { hot } from 'react-hot-loader';
 import { Switch, Route, Link } from 'react-router-dom';
-import { Spring } from 'react-spring';
-import * as easings from 'd3-ease';
+import Carousel from 'nuka-carousel';
 import style from './art.css';
-import ArtPiece1 from './artPiece1.jsx';
-import ArtPiece2 from './artPiece2.jsx';
 import ArtPiece3 from './artPiece3.jsx';
 import ArtPiece4 from './artPiece4.jsx';
-import Art2 from '../../assets/img/art2.jpg';
-import Art3 from '../../assets/img/art3.png';
-import Art4 from '../../assets/img/art4.png';
+import Art5 from '../../assets/img/art5.jpg';
+import Art6 from '../../assets/img/art6.jpg';
+import Art7 from '../../assets/img/art7.jpg';
+import Art8 from '../../assets/img/art8.jpg';
+import Back from '../../assets/img/back.svg';
+import Next from '../../assets/img/right-arrow.svg';
 /* eslint-disable */
-
 class Thema2Selector extends Component {
   constructor() {
     super();
@@ -20,94 +19,97 @@ class Thema2Selector extends Component {
       isHidden: true,
     };
   }
+
   toggleHidden() {
     this.setState({
       isHidden: !this.state.isHidden,
     });
   }
 
-  scrollLeft() {
-    console.log('clicked left');
-    const artSection = document.getElementsByClassName(style.artSelector)[0];
-    console.log(artSection);
-    artSection.scrollLeft -= 200;
-  }
-
-  scrollRight() {
-    console.log('clicked right');
-    const artSection = document.getElementsByClassName(style.artSelector)[0];
-    console.log(artSection);
-    artSection.scrollLeft += 200;
-  }
-
   render() {
     return (
       <div className={style.themeWrapper}>
         <div className={style.artSelector}>
-          <Spring
-            delay={250}
-            from={{ marginBottom: 300, opacity: 0 }}
-            to={{ marginBottom: 0, opacity: 1 }}
-            config={{ duration: 600, easing: easings.easePolyIn }}
-          >
-            {props => (
-              <div style={props}>
-                <Link className={style.link} to="/second">
-                  <section className={style.artWrapper}>
-                    <h2 className={style.artTitle}>Artwork 2</h2>
-                    <h2 className={style.artMaker}>Jan Van Eyck</h2>
-                    <div className={style.artPiece}>
-                      <img src={Art2} height="300" width="400" />
-                    </div>
-                  </section>
-                </Link>
-              </div>
+          <Carousel
+            renderBottomCenterControls={false}
+            focusOnSelect={true}
+            slidesToShow={2}
+            wrapAround={false}
+            slidesToScroll={1}
+            slideIndex={0}
+            cellAlign="center"
+            cellSpacing={200}
+            dragging={true}
+            renderCenterLeftControls={({ previousSlide }) => (
+              <button className={style.moveBtn} onClick={previousSlide}>
+                <img className={style.moveArrow} src={Back} />
+              </button>
             )}
-          </Spring>
-          <Spring
-            delay={400}
-            from={{ marginBottom: 300, opacity: 0 }}
-            to={{ marginBottom: 0, opacity: 1 }}
-            config={{ duration: 600, easing: easings.easePolyIn }}
-          >
-            {props => (
-              <div style={props}>
-                <Link className={style.link} to="/third">
-                  <section className={style.artWrapper}>
-                    <h2 className={style.artTitle}>Artwork 3</h2>
-                    <h2 className={style.artMaker}>Jan Van Eyck</h2>
-                    <div className={style.artPiece}>
-                      <img src={Art3} height="360" width="300" />
-                    </div>
-                  </section>
-                </Link>
-              </div>
+            renderCenterRightControls={({ nextSlide }) => (
+              <button className={style.moveBtn} onClick={nextSlide}>
+                <img className={style.moveArrow} src={Next} />
+              </button>
             )}
-          </Spring>
-          <Spring
-            delay={550}
-            from={{ marginBottom: 300, opacity: 0 }}
-            to={{ marginBottom: 0, opacity: 1 }}
-            config={{ duration: 600, easing: easings.easePolyIn }}
           >
-            {props => (
-              <div style={props}>
-                <Link className={style.link} to="/fourth">
-                  <section className={style.artWrapper}>
-                    <h2 className={style.artTitle}>Artwork 4</h2>
-                    <h2 className={style.artMaker}>Jan Van Eyck</h2>
-                    <div className={style.artPiece}>
-                      <img src={Art4} height="380" width="300" />
-                    </div>
-                  </section>
-                </Link>
-              </div>
-            )}
-          </Spring>
+            <section className={style.artWrapper}>
+              <Link className={style.link} to="/third">
+                <picture>
+                  <img
+                    className={`${style.artPiece} ${style.ap5}`}
+                    src={Art5}
+                    alt="art5"
+                  />
+                </picture>
+                <h2 className={style.artTitle}>
+                  Annunciatie Thyssen-Bornemisza
+                </h2>
+                <h2 className={style.artMaker}>Linkerpaneel</h2>
+              </Link>
+            </section>
+            <section className={style.artWrapper}>
+              <Link className={style.link} to="/fourth">
+                <picture>
+                  <img
+                    className={`${style.artPiece} ${style.ap6}`}
+                    src={Art8}
+                    alt="art5"
+                  />
+                </picture>
+                <h2 className={style.artTitle}>
+                  Annunciatie Thyssen-Bornemisza
+                </h2>
+                <h2 className={style.artMaker}>Rechterpaneel</h2>
+              </Link>
+            </section>
+            <section className={style.artWrapper}>
+              <Link className={style.link} to="/">
+                <picture>
+                  <img
+                    className={`${style.artPiece} ${style.ap7}`}
+                    src={Art6}
+                    alt="art2"
+                  />
+                </picture>
+                <h2 className={style.artTitle}>Dresden, Tryptich</h2>
+                <h2 className={style.artMaker}>Linker paneel</h2>
+              </Link>
+            </section>
+            <section className={style.artWrapper}>
+              <Link className={style.link} to="/">
+                <picture>
+                  <img
+                    className={`${style.artPiece} ${style.ap8}`}
+                    src={Art7}
+                    alt="art2"
+                  />
+                </picture>
+                <h2 className={style.artTitle}>Dresden, Tryptich</h2>
+                <h2 className={style.artMaker}>rechter paneel</h2>
+              </Link>
+            </section>
+          </Carousel>
           <section className="route-section">
             <Switch>
-              <Route path="/first" component={ArtPiece1} />
-              <Route path="/second" component={ArtPiece2} />
               <Route path="/third" component={ArtPiece3} />
               <Route path="/fourth" component={ArtPiece4} />
             </Switch>

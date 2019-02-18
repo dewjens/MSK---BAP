@@ -1,23 +1,41 @@
-.artPiece {
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center center;
-  width: 30rem;
-  height: 30rem;
-  margin: 1rem 5rem;
-  flex: 0 0 auto;
-  background-color: black;
-  box-shadow: 0 0.3rem 1rem black;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  color: white;
-  font-size: 1.2rem;
-  align-items: center;
+@font-face {
+  font-family: 'Baskerville URW Wide';
+  src: url('../../assets/fonts/Baskerville/BaskervilleURWWid-Med.woff2')
+      format('woff2'),
+    url('../../assets/fonts/Baskerville/BaskervilleURWWid-Med.woff')
+      format('woff');
+  font-weight: 500;
+  font-style: normal;
 }
 
+.artPiece {
+  height: 25rem;
+  box-shadow: 0 0.7rem 5rem rgba(0, 0, 0, 0.6);
+  width: 20rem;
+}
+.artPiece:hover {
+  cursor: pointer;
+}
+.ap1 {
+  width: 23rem;
+}
+.ap2 {
+  width: 6rem;
+}
+.ap5 {
+  width: 18rem;
+}
+.ap6 {
+  width: 18rem;
+}
+.ap7 {
+  width: 18rem;
+}
+.ap8 {
+  width: 18rem;
+}
 .artSelector {
-  height: 70vh;
+  height: 100vh;
   width: 100vw;
   display: flex;
   align-items: center;
@@ -26,22 +44,6 @@
   flex-wrap: nowrap; /* [1] */
   -webkit-overflow-scrolling: touch; /* [4] */
   -ms-overflow-style: -ms-autohiding-scrollbar; /* [5] */
-}
-
-.art1 {
-  background-image: url(../../assets/img/art1.jpg);
-}
-
-.art2 {
-  background-image: url(../../assets/img/art2.jpg);
-}
-
-.art3 {
-  background-image: url(../../assets/img/art3.png);
-}
-
-.art4 {
-  background-image: url(../../assets/img/art4.png);
 }
 
 .totalStories {
@@ -55,72 +57,184 @@
 .arspotTitle {
   position: absolute;
   top: 0;
-  margin-top: 10vh;
+  width: 100vw;
+  text-align: center;
   text-transform: uppercase;
 }
 
 .artPiece:hover {
   cursor: pointer;
 }
+.moveBtn {
+  background: none;
+  border: none;
+  margin: 10rem;
+  z-index: 99;
+}
+.moveBtn:hover {
+  cursor: pointer;
+}
+.moveArrow {
+  height: 3rem;
+  padding: 5rem;
+}
+button:focus {
+  outline: 0;
+}
 
 .artSection {
-  position: fixed;
+  position: absolute;
   top: 0;
+  background-image: url('../../assets/img/themaSelectorBg.png');
   left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.6);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  z-index: 99;
+}
+.click {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  text-align: center;
+  font-size: 1.2rem;
+  color: #ffeace;
+  margin-bottom: 1rem;
+  z-index: 100;
+}
+.artworkSpots {
+  width: 100vw;
+  height: 100vh;
+  z-index: 99;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
 }
-
 .closeBtn {
   z-index: 100;
   position: absolute;
-  border: solid white 0.2rem white;
+  border: solid 0.1rem #ffeace;
   padding: 1rem;
   cursor: pointer;
   background: none;
-  font-size: 2rem;
+  font-size: 1.4rem;
   color: white;
-  left: 0;
+  right: 0;
   top: 0;
-  margin-top: 1rem;
-  margin-left: 33.5rem;
+  margin-right: 5rem;
+  font-family: 'BaskervilleURWWid';
+  margin-top: 3rem;
+  transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+}
+.closeBtn:hover {
+  background-color: transparent;
+  text-shadow: none;
+  color: #61503c;
+}
+.closeBtn:hover:before {
+  bottom: 0%;
+  top: auto;
+  height: 100%;
 }
 
 .closeBtn:focus {
   outline: none;
 }
+.closeBtn:before {
+  display: block;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  height: 0px;
+  width: 100%;
+  z-index: -1;
+  content: '';
+  background: #ffeace;
+  transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+}
 
 .artTitle {
-  color: white;
+  color: #ffeace;
   text-transform: uppercase;
-  margin-left: 5rem;
+  width: 100%;
+  text-align: center;
   font-weight: 600;
+  font-size: 1.3rem;
+  height: 5rem;
+  padding-top: 2rem;
+  margin-bottom: -2rem;
 }
 
 .artMaker {
-  padding-top: 0.52rem;
-  color: white;
+  color: #61503c;
   font-weight: 100;
-  margin-left: 5rem;
+  width: 100%;
+  text-align: center;
+  font-size: 1.4rem;
 }
-
-.hotspot {
-  width: 0.6rem;
-  height: 0.6rem;
-  border-radius: 50%;
-  background: white;
+.videoBox {
+  width: 40vw;
+  height: 50vh;
+  max-width: 56rem;
+  max-height: 56rem;
+  position: relative;
+  padding-bottom: 68.25%;
+  height: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.vb1 {
+  width: 60vw;
+}
+.vb2 {
+  width: 10vw;
+  max-width: 11.7rem;
+  max-height: 110rem;
+}
+.vb3 {
+  width: 32vw;
+}
+.spotDesc {
+  background-color: #846846;
+  color: #fcead2;
+  padding: 1rem;
+  width: 20vw;
+  border: 0.1rem solid #fcead2;
+  font-size: 1rem;
+  opacity: 0.9;
+}
+.artSpots {
   position: absolute;
   left: 0;
+  right: 0;
   top: 0;
-  margin-left: 20rem;
-  margin-top: 25rem;
-  z-index: 99;
-  cursor: pointer;
+  bottom: 0;
+  margin: 0 auto;
+  width: 70%;
+  height: 100%;
+}
+.hotspots {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.as3 {
+}
+.hot3 {
+  max-width: 30rem;
+}
+.hotspot {
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.8);
+  position: relative;
 
   &:before,
   &:after {
@@ -129,12 +243,14 @@
     height: inherit;
     border-radius: inherit;
     background: inherit;
-    opacity: 0.3;
+    opacity: 1;
     position: absolute;
     top: 0;
     left: 0;
     transition: box-shadow 0.3s;
     animation: pulse-aninmation 5s ease-in-out infinite both;
+    z-index: 1000;
+    box-shadow: 0 0 0.1rem 0.5rem rgba(255, 255, 255, 0.5);
   }
 
   &:after {
@@ -144,17 +260,34 @@
   &:hover {
     &:before,
     &:after {
-      box-shadow: 0 0 0.5px 0.5px #fff;
+      box-shadow: 0 0 0.1rem 0.5rem rgba(255, 255, 255, 0.5);
+      cursor: pointer;
     }
   }
 }
 
+.hs1 {
+  top: 45%;
+  left: 33%;
+}
+.hs2 {
+  top: 55%;
+  left: 38%;
+}
+.hs4 {
+  top: 26%;
+  left: 50%;
+}
+.hs3 {
+  top: 26%;
+  left: 50%;
+}
 @keyframes pulse-aninmation {
   0% {
     transform: scale(1);
   }
   50% {
-    transform: scale(6);
+    transform: scale(2);
   }
   100% {
     transform: scale(1);
@@ -165,47 +298,39 @@
   position: absolute;
   top: 0;
   right: 0;
-  width: 35rem;
+  width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.8);
-  box-shadow: 0 0.3rem 1rem black;
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: space-around;
-  padding: 2rem;
-  z-index: 100001;
+  z-index: 1001;
 }
 
 .videoTooltip {
   width: 100%;
   height: 30%;
-  margin-top: 2rem;
-}
-
-.otherTp {
-  width: 100%;
-  height: 6rem;
-  background-image: url(../../assets/img/TP1.png);
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-color: white;
-  margin-top: 1rem;
 }
 
 .otherTouchpoints {
-  height: 40vh;
+  height: 20vh;
   width: 100%;
   display: flex;
   flex-direction: column;
 }
-
+.shadow {
+  box-shadow: 0 0 10px 1px black inset;
+  background-color: rgba(0, 0, 0, .1);
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  position: absolute;
+  transition: opacity 0.3s ease-in-out;
+}
 .descVideo {
-  margin-top: 7rem;
   width: 100%;
   color: white;
-  height: 15%;
   white-space: pre-wrap; /* CSS3 */
   white-space: -moz-pre-wrap; /* Firefox */
   white-space: -pre-wrap; /* Opera <7 */
@@ -213,36 +338,61 @@
   word-wrap: break-word; /* IE */
 }
 
-.artSpots {
-  position: absolute;
-  top: 0;
-  left: 0;
-  margin-left: 8rem;
-  margin-top: 8rem;
-}
-
 .otherTitle {
-  text-align: left;
+  text-align: center;
   text-transform: uppercase;
   font-weight: 600;
+  color: #ffeace;
 }
 
 .themePicker {
-  color: white;
-  position: absolute;
-  margin-top: 3rem;
-  font-size: 2rem;
-  top: 0;
+  color: #ffeace;
+  font-size: 1.4rem;
   text-transform: uppercase;
-  margin-top: 3rem;
   cursor: pointer;
+  transition: all 0.5s ease;
+  display: flex;
+  width: 10vw;
+  justify-content: center;
 }
-
-.themePicker:hover {
-  background-color: white;
-  color: black;
+.themeBack {
+  padding-left: 0.8rem;
+  margin-top: 0.5rem;
 }
-
+.alterThemepicker {
+  width: 100vw;
+  background-color: #846846;
+  height: 4.3rem;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  z-index: 2;
+}
+.themeAlter {
+  display: flex;
+  justify-content: space-around;
+  font-size: 1.3rem;
+  width: 80vw;
+  color: #ffeace;
+}
+.themeAlterItem {
+  display: flex;
+  justify-content: space-around;
+  font-size: 1.3rem;
+  width: 80vw;
+  height: 0.5rem;
+  cursor: pointer;
+  opacity: 0.4;
+}
+.themeAlterItem:hover {
+  opacity: 1;
+}
+.active {
+  opacity: 1;
+}
 .themeSection {
   color: white;
   display: flex;
@@ -256,8 +406,19 @@
   position: absolute;
   justify-content: space-around;
   text-align: center;
-  background-image: url(../../assets/img/enterBg.png);
+  background-image: url(../../assets/img/enterBg.jpg);
   background-size: cover;
+}
+.spotLight {
+  width: 100vw;
+  height: 100vh;
+  background-image: url(../../assets/img/spotlight.png);
+  position: absolute;
+  background-repeat: no-repeat;
+  background-position: top center;
+  z-index: -1;
+  top: 0;
+  left: 0;
 }
 
 .themeWrapper {
@@ -271,32 +432,54 @@
 .theme {
   font-size: 2rem;
   text-transform: uppercase;
-  margin-top: 3rem;
   color: black;
-  height: 30rem;
-  width: 20rem;
+  height: 99.6vh;
+  width: 33.3vw;
   position: relative;
   transition: all 0.2s ease-in;
   background-size: cover;
   background-position: center center;
-  box-shadow: 0 0.2rem 1rem black;
+  border: 0.1rem solid #ffeace;
 }
 
 .theme:hover {
   cursor: pointer;
-  width: 22rem;
-  height: 32rem;
+  width: 55vw;
   transition: all 0.2s ease-in;
-  box-shadow: 0 0.2rem 3rem black;
+  filter: brightness(150%);
+}
+
+.theme:hover .playBtn {
+  transition: all 0.1s ease-in;
+  visibility: visible;
+}
+
+.theme:hover .ontdekBg {
+  transition: all 0.1s ease-in;
+  visibility: visible;
+  border-left: 7rem solid transparent;
+  border-right: 7rem solid transparent;
+  border-bottom: 7rem solid #61503c;
 }
 
 .themeName {
-  color: white;
+  font-family: 'Baskerville URW Wide';
+  color: #ffeace;
+  font-size: 1.5rem;
+}
+
+.themeDescr {
   position: absolute;
   bottom: 0;
+  left: 0;
+  padding-bottom: 10rem;
   width: 100%;
-  font-size: 1rem;
-  padding-bottom: 1rem;
+}
+
+.themeWorks {
+  font-family: 'Baskerville URW Wide';
+  color: #c8b7a1;
+  font-size: 1.25rem;
   padding-top: 1rem;
 }
 
@@ -319,118 +502,235 @@
 .slide {
   height: 3rem;
 }
-
+.artWrapper {
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .link {
+  z-index: 101;
   text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+*:focus {
+  outline: none;
 }
 
-.videoTitle {
-  margin-top: -0.5rem;
-  text-transform: uppercase;
-  z-index: 13;
+.link:focus {
+  outline: none;
+  border: 0;
 }
 
+.playBtn {
+  width: 7rem;
+  height: 7rem;
+  background-image: url('../../assets/img/playBtn.png');
+  background-size: cover;
+  z-index: 200;
+  visibility: hidden;
+  transition: all 0.1s ease-in;
+}
+.playBtnWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
 .themeHeader {
   position: absolute;
-  margin-top: 3rem;
+  margin-top: 2rem;
   font-size: 2rem;
   top: 0;
+  z-index: 200;
+  text-shadow: 0.1rem 0.1rem 0.5rem black;
+  position: absolute;
+  margin-right: 1rem;
+  text-align: right;
+  top: 0;
+  right: 0;
 }
 .themeTitle {
   text-transform: uppercase;
+  font-family: 'Baskerville URW Wide';
+  color: #ffeace;
 }
 
 .themeIntro {
   font-size: 1rem;
-  padding-top: 0.8rem;
+  font-family: 'Baskerville URW Wide';
+  color: #c8b7a1;
 }
 
 .theme1 {
-  background-image: url(../../assets/img/thema1.png);
+  background-image: url(../../assets/img/thema21.jpg);
 }
 
 .theme2 {
-  background-image: url(../../assets/img/thema2.png);
+  background-image: url(../../assets/img/thema11.jpg);
+}
+
+.theme3 {
+  background-image: url(../../assets/img/thema31.jpg);
+}
+
+.skipThema {
+  position: absolute;
+  z-index: 210;
+  cursor: pointer;
+  color: white;
+  text-transform: uppercase;
+  background: none;
+  padding: 1.5rem;
+  border: solid 0.1rem white;
+  border-color: #ffeace;
+  transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+  bottom: 0;
+  right: 0;
+  margin-bottom: 3rem;
+  margin-right: 3rem;
+}
+
+.skipThema:hover {
+  background-color: transparent;
+  text-shadow: none;
+  color: #61503c;
+}
+
+.skipThema:hover:before {
+  bottom: 0%;
+  top: auto;
+  height: 100%;
+}
+.videoTitle  {
+  color: #ffeace;
+  font-size: 1.4rem;
+}
+
+.ontdek {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  color: #ffeace;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+
+.ontdekBg {
+  z-index: 300;
+  position: relative;
+  left: 0;
+  bottom: 0;
+  border-left: 0rem solid transparent;
+  border-right: 0rem solid transparent;
+  border-bottom: 0rem solid #61503c;
+  font-size: 0.8rem;
+  visibility: hidden;
+}
+.ontdektext {
+  position: absolute;
+  top: 5rem;
+  left: -3rem;
+  text-align: center;
+}
+.skipThema:before {
+  display: block;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  height: 0px;
+  width: 100%;
+  z-index: -1;
+  content: '';
+  background: #ffeace;
+  transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+}
+.themaTitle {
+  color: #ffeace;
+  font-size: 1.7rem;
+  text-transform: uppercase;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  margin-top: 3rem;
+  text-align: center;
+  z-index: 200;
 }
 
 @media only screen and (max-width: 1300px) {
-  .theme {
-    width: 15rem;
-    height: 23rem;
+  .subTitleWrapper {
+    width: 50vw;
   }
-
-  .theme:hover {
-    width: 16.5rem;
-    height: 24.5rem;
+  .subTitle {
+    font-size: 1.3rem;
+  }
+  .spotDesc {
+    width: 40vw;
+    font-size: 0.9rem;
+  }
+}
+@media only screen and (max-width: 950px) {
+  .themaTitle {
+    font-size: 1.5em;
+    margin-top: 2.5rem;
+    top: 0;
+    left: 0;
+    margin-left: -2rem;
+    text-align: right;
+  }
+  .spotDesc {
+    width: 30vw;
+    font-size: 0.9rem;
+  }
+}
+@media only screen and (max-width: 880px) {
+  .themeAlterItem {
+    font-size: 1rem;
   }
 }
 
 @media only screen and (max-width: 1000px) {
-  .theme {
-    width: 12.5rem;
-    height: 20rem;
+  .subTitleWrapper {
+    width: 80vw;
   }
-
-  .theme:hover {
-    width: 14.5rem;
-    height: 22.5rem;
+  .subTitle {
+    font-size: 1rem;
+  }
+  .subTitles {
+    height: 25rem;
+  }
+  .moveBtn {
+    margin: 2rem;
   }
 }
 
 @media only screen and (max-width: 830px) {
-  .theme {
-    width: 30rem;
-    height: 8rem;
-    margin: 0.5rem;
-  }
-
-  .themeSection {
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .theme:hover {
-    width: 32rem;
-    height: 9.5rem;
-  }
-
-  .theme1 {
-    background-image: url(../../assets/img/thema1rsp.png);
-  }
-
-  .theme2 {
-    background-image: url(../../assets/img/thema2rsp.png);
-  }
-
   .themeName {
-    color: white;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
     font-size: 1rem;
-    padding-top: 0;
-    padding-bottom: 0.3rem;
-  }
-
-  .themeHeader {
-    position: absolute;
-    margin-top: 1rem;
-    margin-right: 1rem;
-    top: 0;
-    right: 0;
   }
 
   .themeTitle {
     font-size: 1.5rem;
     text-align: right;
   }
+  .themeWorks {
+    font-size: 0.9rem;
+  }
 
   .themeIntro {
     padding-top: 0.3rem;
   }
-
-  .themeName {
-    display: none;
+  .moveBtn {
+    margin: 0;
   }
 }
 
@@ -438,22 +738,51 @@
   .themePicker {
     width: 100vw;
     background-color: black;
-    height: 4rem;
+    height: 3rem;
     margin-left: 0;
     margin-top: 5rem;
+    font-size: 1.3rem;
     display: flex;
     justify-content: center;
     align-items: center;
   }
-
-  .artPiece {
-    width: 80vw;
-    height: 50vh;
-    margin-left: 2rem;
+  .themeSection {
+    flex-direction: column;
+    justify-content: center;
   }
-
+  .theme {
+    margin: 1rem;
+    height: 7rem;
+    width: 80vw;
+  }
+  .theme:hover {
+    width: 84vw;
+  }
+  .ontdek {
+    display: none;
+  }
+  .themaTitle {
+    font-size: 1em;
+    margin-top: 1.6rem;
+    top: 0;
+    left: 0;
+    margin-left: -2rem;
+    text-align: right;
+  }
+  .themeDescr {
+    padding-bottom: 1rem;
+  }
+  .artTitle {
+    font-size: 0.7rem;
+    width: 100%;
+    padding-top: 0;
+  }
+  .artMaker {
+    font-size: 0.7rem;
+    margin-top: -1rem;
+  }
   .artSelector {
-    margin-top: 5rem;
+    margin-top: 0;
   }
 
   .scrollBtns {
@@ -469,23 +798,22 @@
     width: 2rem;
   }
 
-  .artTitle {
-    margin-left: 2rem;
-  }
-
-  .artMaker {
-    margin-left: 2rem;
-  }
-
   .closeBtn {
     height: 4rem;
     position: absolute;
     width: 100vw;
+    background-color: #846846;
+    border: none;
     border-radius: 0;
     margin-top: 8rem;
-    margin-left: 0;
+    margin-right: 0;
+    bottom: 0;
+    left: 0;
+    top: auto;
   }
-
+  .videoBox {
+    width: 100vw;
+  }
   .detailSection {
     position: absolute;
     top: 0;
@@ -497,7 +825,7 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
     padding: 0;
   }
 
@@ -521,22 +849,6 @@
     padding-top: 3rem;
   }
 
-  .otherTp {
-    width: 100vw;
-    height: 4.5rem;
-    background-image: url(../../assets/img/TP1.png);
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-color: white;
-    margin-top: 1rem;
-  }
-
-  .theme {
-    width: 80vw;
-    height: 6rem;
-  }
-
   .themeTitle {
     font-size: 1.5rem;
   }
@@ -544,5 +856,109 @@
   .themeIntro {
     font-size: 0.7rem;
     padding-top: 0.3rem;
+  }
+  .subTitle {
+    font-size: 0.8rem;
+    line-height: 1.1rem;
+  }
+  .subTitleWrapper {
+    width: 90vw;
+  }
+  .artSpotTitle {
+    margin-top: -3rem;
+  }
+  .closeBtn {
+    font-size: 1.3rem;
+  }
+  .arspotTitle {
+    margin-top: 0.5rem;
+    margin-right: 0.8rem;
+    right: 0;
+  }
+  .skipThema {
+    font-size: 1rem;
+    padding: 1rem;
+    border: solid 0.1rem white;
+    border-color: #ffeace;
+    transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+    bottom: 0;
+    right: 0;
+    margin-bottom: 5rem;
+    margin-right: 3rem;
+  }
+  .themeHeader {
+    position: absolute;
+    font-size: 2rem;
+    position: absolute;
+    text-align: center;
+    width: 100vw;
+    top: auto;
+    bottom: 0;
+    right: 0;
+    margin-bottom: 1rem;
+  }
+  .themeTitle {
+    text-align: center;
+  }
+  .themaTitle {
+    margin-top: 8rem;
+    width: 100vw;
+    text-align: center;
+    margin-left: 0;
+    font-size: 1.5rem;
+  }
+  .moveBtn {
+    margin: 0;
+  }
+  .moveArrow {
+    height: 2rem;
+    padding: 1rem;
+    z-index: 100;
+  }
+  .artPiece {
+    transform: scale(0.6);
+  }
+  .themePicker {
+    margin-top: 0;
+    background: none;
+    width: 100vw;
+  }
+  .themeAlter {
+    display: none;
+  }
+  .themeBack {
+    font-size: 1rem;
+  }
+  .themeWrapper {
+    margin-top: -4rem;
+  }
+  .click {
+    margin-bottom: 5rem;
+    font-size: 0.8rem;
+  }
+  .spotDesc {
+    background-color: #846846;
+    color: #fcead2;
+    padding: 1rem;
+    width: 50vw;
+    border: 0.1rem solid #fcead2;
+    font-size: 0.7rem;
+    opacity: 0.9;
+  }
+}
+@media only screen and (max-width: 350px) {
+  .theme {
+    height: 5rem;
+  }
+  .link {
+    margin-top: 3rem;
+  }
+  .artTitle{
+    margin-top: -2rem;
+  }
+}
+@media only screen and (max-height: 690px) {
+  .link{
+    transform: scale(0.7);
   }
 }

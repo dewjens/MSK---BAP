@@ -2,7 +2,6 @@
    v2.0 | 20110126
    License: none (public domain)
 */
-
 html,
 body,
 div,
@@ -127,17 +126,21 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+@font-face {
+  font-family: 'Baskerville URW Wide';
+  src: url('../../assets/fonts/Baskerville/BaskervilleURWWid-Med.woff2')
+      format('woff2'),
+    url('../../assets/fonts/Baskerville/BaskervilleURWWid-Med.woff')
+      format('woff');
+  font-weight: 500;
+  font-style: normal;
+}
 
 html {
-  background-color: #212121;
-  font-family: 'Roboto', 'Arial', sans-serif;
+  background-image: url('../img/themaSelectorBg.png');
+  font-family: 'Baskerville URW Wide', 'Roboto', 'Arial', sans-serif;
   overflow-y: hidden;
   overflow-x: hidden;
-  background-image: url(../img/bg.png);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 60%;
-  scroll-behavior: smooth;
 }
 
 main {
@@ -146,6 +149,8 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow-y: hidden;
+  overflow-x: hidden;
 }
 
 .light {
@@ -166,7 +171,8 @@ main {
   text-transform: uppercase;
   padding: 1rem;
   font-weight: bold;
-  border-color: red;
+  border: solid .1rem #ffeace;
+  font-family: 'Baskerville URW Wide';
   transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
   margin-top: 10rem;
 }
@@ -174,6 +180,7 @@ main {
 .enterBtn:hover {
   background-color: transparent;
   text-shadow: none;
+  color: #61503c;
 }
 
 .enterBtn:hover:before {
@@ -191,7 +198,7 @@ main {
   width: 100%;
   z-index: -1;
   content: '';
-  background: red;
+  background: #ffeace;
   transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
 }
 
@@ -204,10 +211,15 @@ main {
   width: 100vw;
   height: 100vh;
   background-color: #212121;
-  background-image: url(../img/enterBg.png);
+  background-image: url(../img/enterBg.jpg);
   background-size: cover;
 }
-
+.preloader {
+  background-color: red;
+  background: none;
+  color: red;
+  font-size: 300rem;
+}
 .enterDesc {
   text-align: center;
   width: 30rem;
@@ -227,13 +239,13 @@ main {
   margin-top: -5rem;
   text-align: center;
   font-size: 3rem;
-  color: white;
   text-transform: uppercase;
+  color: #ffeace;
 }
 
 .enterTitle2 {
   font-size: 1.6rem;
-  color: white;
+  color: #c8b7a1;
   font-weight: 300;
   margin-bottom: 2.5rem;
 }
@@ -258,12 +270,12 @@ main {
 
 @media only screen and (max-width: 550px) {
   .enterTitle {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     margin-top: -2rem;
   }
 
   .enterTitle2 {
-    font-size: 0.8rem;
+    font-size: 1rem;
   }
 
   .enterDesc {

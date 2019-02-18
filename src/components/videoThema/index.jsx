@@ -17,7 +17,7 @@ class Video extends Component {
       videoURL: 'http://clips.vorwaerts-gmbh.de/VfE_html5.mp4',
       progress: '0%',
       playbackRate: 1,
-      volume: 1,
+      volume: 0.5,
       isMouseDown: false,
       opacity: 1,
       height: '0rem',
@@ -177,6 +177,9 @@ class Video extends Component {
         <video
           className={style.videoCanvas}
           ref="video"
+          autoPlay
+          loop
+          playsInline
           onClick={this.togglePlay}
         >
           <source src={this.state.videoURL} type="video/mp4" />
